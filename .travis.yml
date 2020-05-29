@@ -1,0 +1,10 @@
+sudo: required
+language: generic 
+services:
+	- docker
+
+before_install:
+	- docker build -t deepthikka/docker-react -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true deepthikka/docker-react npm run test -- --coverage
